@@ -7,6 +7,11 @@ const multipleChoiceQuestions = [{
     question: "Question 1",
     choices: ["A", "B", "C", "D"],
     correct: "A"
+},
+{
+    question: "Question 2",
+    choices: ["A", "B", "C", "D"],
+    correct: "B"
 }]
 let score = 0;
 quizContainer.style.display = "none";
@@ -32,7 +37,8 @@ function displayQuiz() {
 function compareAnswers(event) {
     let chosen = event.target;
     if (chosen.matches("li")) {
-        if (chosen.textContent === multipleChoiceQuestions[0].correct) {
+        for (let i = 0; i < multipleChoiceQuestions.length; i++) {
+            if (chosen.textContent === multipleChoiceQuestions[0].correct) {
             console.log("Correct!");
             score++;
         } else {
@@ -42,8 +48,9 @@ function compareAnswers(event) {
         if (score <= 0) {
             score = 0;
         }
+        }
         console.log(score);
-        //displayQuestions();
+        displayQuiz();
         endQuiz();
     }
 }
