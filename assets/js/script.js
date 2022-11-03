@@ -4,15 +4,56 @@ const quizContainer = document.querySelector(".quiz-container");
 const questions = document.querySelector(".questions");
 const answers = document.querySelector(".answers");
 const multipleChoiceQuestions = [{
-    question: "Question 1",
-    choices: ["A", "B", "C", "D"],
-    correct: "A"
+    question: "JavaScript is a(n) ____ language",
+    choices: ["A) Object-Based", "B) Assembly", "C) Object-Oriented", "D) High-Level"],
+    correct: "A) Object-Based"
 },
 {
-    question: "Question 2",
-    choices: ["A", "B", "C", "D"],
+    question: "Which JavaScript method displays a message to the console?",
+    choices: ["A) console.write()", "B) console.message()", "C) console.log()", "D) console.output()"],
+    correct: "C) console.log()"
+}, 
+{
+    question: "Which of the following symbols denotes the beginning of a single-line comment in JavaScript?",
+    choices: ["A) <--", "B) /*", "C) //", "D) ?"],
+    correct: "C) //"
+},
+{
+    question: "In JavaScript, 'function' and 'var' are examples of:",
+    choices: ["A) reserved keywords", "B) declaration statements", "C) event listeners", "D) prototypes"],
+    correct: "A) reserved keywords"
+},
+{
+    question: "Which of the following is a logical operator?",
+    choices: ["A) +", "B) -", "C) *", "D) &&"],
+    correct: "D) &&"
+},
+{
+    question: "What is the scope level of a variable declared outside the body of any function?",
+    choices: ["A) Local", "B) Block", "C) Global", "D) Regional"],
+    correct: "C) Global"
+},
+{
+    question: "What is the value of an uninitialized variable?",
+    choices: ["A) NaN", "B) undefined", "C) 0", "D) null"],
+    correct: "B) undefined"
+},
+{
+    question: "What JavaScript property returns the length of a string?",
+    choices: ["A) .length", "B) .size", "C) .stringlength", "D) .strlength"],
+    correct: "A) .length"
+},
+{
+    question: "What JavaScript keyword returns the data type of a variable?",
+    choices: ["A) type", "B) typeof", "C) datatype", "D) variabletype"],
     correct: "B"
-}]
+},
+{
+    question: "Who initially developed JavaScript?",
+    choices: ["A) Rasmus Lerdorf", "B) Bjarne Stroustrup", "C) Brendan Eich", "D) Guido van Rossum"],
+    correct: "C) Brendan Eich"
+}
+]
 let score = 0;
 quizContainer.style.display = "none";
 
