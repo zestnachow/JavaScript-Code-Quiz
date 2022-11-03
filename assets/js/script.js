@@ -67,7 +67,7 @@ const multipleChoiceQuestions = [{
 }
 ]
 
-
+// Hide quiz elements on initial page load
 quizContainer.style.display = "none";
 timerEl.setAttribute("display", "none");
 
@@ -83,18 +83,16 @@ function countDown() {
             }
         }, 1000)
     }
-    displayQuiz(questionsIndex);
 }
 
 
-function displayQuiz(questionsIndex) {
+function displayQuiz() {
     questions.innerHTML = "";
     answers.innerHTML = "";
-    for (let i = 0; i < multipleChoiceQuestions.length; i++) {
-        let userQuestion = multipleChoiceQuestions[i].question;
-        var userAnswers = multipleChoiceQuestions[i].choices;
-        questions.innerHTML = userQuestion;
-    }
+    let userQuestion = multipleChoiceQuestions[questionsIndex].question;
+    var userAnswers = multipleChoiceQuestions[questionsIndex].choices;
+    questions.innerHTML = userQuestion;
+    
     userAnswers.forEach(function(nextAnswer) {
         let listItem = document.createElement("li");
         listItem.innerHTML = nextAnswer;
@@ -121,14 +119,14 @@ function compareAnswers(event) {
         if (questionsIndex >= multipleChoiceQuestions.length) {
             endQuiz();
         } else {
-            displayQuiz(questionsIndex);
+            displayQuiz();
         }
         
     }
 }
 
 function endQuiz() {
-    timerEl.setAttribute("display", "none");
+    timerEl.textContent = "";
     quizContainer.innerHTML = "";
     const h1 = document.createElement("h1");
     h1.innerHTML = "Quiz Over!";
