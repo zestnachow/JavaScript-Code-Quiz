@@ -1,8 +1,20 @@
+// Quiz variables
+var score = 0;
+var questionsIndex = 0;
+
+// Timer variables
+var time = 89;
+var pauseInterval = 0;
+var incorrectAnswerPenalty = 2;
+
+// References to HTML elements
 const welcome = document.querySelector(".welcome");
 const startButton = document.querySelector(".start-button");
 const quizContainer = document.querySelector(".quiz-container");
 const questions = document.querySelector(".questions");
 const answers = document.querySelector(".answers");
+var timerEl = document.getElementById("timer");
+// Question array
 const multipleChoiceQuestions = [{
     question: "JavaScript is a(n) ____ language",
     choices: ["A) Object-Based", "B) Assembly", "C) Object-Oriented", "D) High-Level"],
@@ -54,12 +66,28 @@ const multipleChoiceQuestions = [{
     correct: "C) Brendan Eich"
 }
 ]
-let score = 0;
+
+
 quizContainer.style.display = "none";
+timerEl.setAttribute("display", "none");
+
+function countDown() {
+    if (pauseInterval === 0) {
+        pauseInterval = setInterval(function() {
+            timerEl.textContent = "Time Left: " + time + " seconds";
+            time--;
+            if (time < 0) {
+                clearInterval(pauseInterval);
+                timerEl.textContent = "Out of time!";
+                endQuiz();
+            }
+        }, 1000)
+    }
+    displayQuiz(questionsIndex);
+}
 
 
-
-function displayQuiz() {
+function displayQuiz(questionsIndex) {
     questions.innerHTML = "";
     answers.innerHTML = "";
     for (let i = 0; i < multipleChoiceQuestions.length; i++) {
@@ -78,25 +106,29 @@ function displayQuiz() {
 function compareAnswers(event) {
     let chosen = event.target;
     if (chosen.matches("li")) {
-        for (let i = 0; i < multipleChoiceQuestions.length; i++) {
-            if (chosen.textContent === multipleChoiceQuestions[0].correct) {
-            console.log("Correct!");
-            score++;
+        if (chosen.textContent === multipleChoiceQuestions[questionsIndex].correct) {
+            alert("Correct!");
+            score+= 10;
         } else {
-            console.log("Wrong!");
-            score--;
+            alert("Wrong!");
+            score-= 2;
         } 
         if (score <= 0) {
             score = 0;
         }
+        
+        questionsIndex++;
+        if (questionsIndex >= multipleChoiceQuestions.length) {
+            endQuiz();
+        } else {
+            displayQuiz(questionsIndex);
         }
-        console.log(score);
-        displayQuiz();
-        endQuiz();
+        
     }
 }
 
 function endQuiz() {
+    timerEl.setAttribute("display", "none");
     quizContainer.innerHTML = "";
     const h1 = document.createElement("h1");
     h1.innerHTML = "Quiz Over!";
@@ -130,6 +162,9 @@ function endQuiz() {
 startButton.addEventListener("click", function() {
     welcome.style.display = "none";
     quizContainer.style.display = "block";
+    timerEl.setAttribute("display", "block");
+    timerEl.textContent = "Time Left: 90 seconds";
+    countDown();
     displayQuiz();
 })
 
