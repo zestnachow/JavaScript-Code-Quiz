@@ -71,6 +71,7 @@ const multipleChoiceQuestions = [{
 quizContainer.style.display = "none";
 timerEl.setAttribute("display", "none");
 
+// Timer function, dynamically updates timer text and ends the quiz upon expiration
 function countDown() {
     if (pauseInterval === 0) {
         pauseInterval = setInterval(function() {
@@ -85,7 +86,7 @@ function countDown() {
     }
 }
 
-
+// Displays questions and answer list items to the user
 function displayQuiz() {
     questions.innerHTML = "";
     answers.innerHTML = "";
@@ -101,6 +102,7 @@ function displayQuiz() {
     })
 }
 
+// Checks user responses for correctness and modifies score accordingly, ends quiz when all questions have been answered
 function compareAnswers(event) {
     let chosen = event.target;
     if (chosen.matches("li")) {
@@ -114,7 +116,6 @@ function compareAnswers(event) {
         if (score <= 0) {
             score = 0;
         }
-        
         questionsIndex++;
         if (questionsIndex >= multipleChoiceQuestions.length) {
             clearInterval(pauseInterval);
@@ -123,10 +124,10 @@ function compareAnswers(event) {
         } else {
             displayQuiz();
         }
-        
     }
 }
 
+// Hides quiz elements, presents user with an input and stores their score on a button click
 function endQuiz() {
     timerEl.setAttribute("display", "none");
     quizContainer.innerHTML = "";
@@ -137,6 +138,9 @@ function endQuiz() {
     score+= time;
     p.innerHTML = "Score: " + score;
     quizContainer.appendChild(p);
+    const inputLabel = document.createElement("label");
+    inputLabel.textContent = "Please enter your initials to save your score: "
+    quizContainer.appendChild(inputLabel);
     const input = document.createElement("input");
     input.type = "text";
     input.textContent = "";
@@ -169,6 +173,7 @@ function endQuiz() {
     })
 }
 
+// Hides welcome message, displays quiz elements, and kicks off the quiz and timer on a button click
 startButton.addEventListener("click", function() {
     welcome.style.display = "none";
     quizContainer.style.display = "block";
