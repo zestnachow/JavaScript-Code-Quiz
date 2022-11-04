@@ -3,3 +3,63 @@
     padding: 0;
     margin: 0;
 }
+
+:root {
+    --primary: #d9dbf1;
+    --secondary: #8e9dcc;
+    --tertiary: #7d84b2;
+    --quaternary: #f9f9ed;
+}
+body {
+    background-color: var(--primary);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+button {
+    background-color: var(--tertiary);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.2rem;
+    border: 2px solid black;
+}
+
+.welcome, .quiz-container {
+    margin-top: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome h1, p, button {
+    margin-top: 10%;
+}
+
+.questions {
+    font-size: 2rem;
+}
+
+.quiz-container ul {
+    margin-top: 10%;
+}
+
+.quiz-container li {
+    margin-top: 5%;
+    border: 2px solid black;
+    color: var(--quaternary);
+    background-color: var(--tertiary);
+}
+
+.score-container {
+    margin-top: 5%;
+}
+
+#clear-btn {
+    margin-left: 10%;
+}

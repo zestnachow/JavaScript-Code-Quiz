@@ -21,7 +21,7 @@ var sortedScoreList = scoreList.sort(function(a, b) {
     return b.userScore-a.userScore;
 })
 console.log(sortedScoreList);
-if (sortedScoreList !== null) {
+if (sortedScoreList!== null) { 
     for (var i = 0; i < sortedScoreList.length; i++) {
         var scoreListItem = document.createElement("li");
         scoreListItem.textContent = sortedScoreList[i].initials + " " + sortedScoreList[i].userScore;
