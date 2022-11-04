@@ -7,3 +7,6 @@ For this assignment, we were required to create a brief JavaScript coding quiz f
 # Live Link
 
 https://zestnachow.github.io/JavaScript-Code-Quiz/index.html
+# Screenshot
+
+![Quiz Screenshot](./assets/images/Screen Shot 2022-11-04 at 1.35.50 AM.png?raw=true "Quiz Screenshot")
