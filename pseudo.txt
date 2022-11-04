@@ -1,6 +1,0 @@
-- polish iteration through the questions array
-- get timer up and running/implement score system
-- make sure quiz ending conditions are complete/correct
-- tabulate final score
-- keep list of high scores in local storage and display them to the user in a separate high scores page
-- (final) work on CSS/user experience
