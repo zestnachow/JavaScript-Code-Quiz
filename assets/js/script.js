@@ -112,6 +112,7 @@ function compareAnswers(event) {
         } else {
             alert("Wrong!");
             score-= 2;
+            time-= 5;
         } 
         if (score <= 0) {
             score = 0;
