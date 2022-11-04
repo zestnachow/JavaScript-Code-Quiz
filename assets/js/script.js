@@ -58,7 +58,7 @@ const multipleChoiceQuestions = [{
 {
     question: "What JavaScript keyword returns the data type of a variable?",
     choices: ["A) type", "B) typeof", "C) datatype", "D) variabletype"],
-    correct: "B"
+    correct: "B) typeof"
 },
 {
     question: "Who initially developed JavaScript?",
@@ -78,7 +78,7 @@ function countDown() {
             time--;
             if (time < 0) {
                 clearInterval(pauseInterval);
-                timerEl.textContent = "Out of time!";
+                timerEl.textContent = "";
                 endQuiz();
             }
         }, 1000)
@@ -117,6 +117,8 @@ function compareAnswers(event) {
         
         questionsIndex++;
         if (questionsIndex >= multipleChoiceQuestions.length) {
+            clearInterval(pauseInterval);
+            timerEl.textContent="";
             endQuiz();
         } else {
             displayQuiz();
@@ -126,12 +128,13 @@ function compareAnswers(event) {
 }
 
 function endQuiz() {
-    timerEl.textContent = "";
+    timerEl.setAttribute("display", "none");
     quizContainer.innerHTML = "";
     const h1 = document.createElement("h1");
     h1.innerHTML = "Quiz Over!";
     quizContainer.appendChild(h1);
     const p = document.createElement("p");
+    score+= time;
     p.innerHTML = "Score: " + score;
     quizContainer.appendChild(p);
     const input = document.createElement("input");
@@ -153,7 +156,16 @@ function endQuiz() {
             console.log(finalScore);
             localStorage.setItem("userScore", JSON.stringify(finalScore));
         }
-        
+        var scoreList = localStorage.getItem("scoreList")
+        if (scoreList === null) {
+            scoreList = [];
+        } else {
+            scoreList = JSON.parse(scoreList)
+        }
+        scoreList.push(finalScore);
+        var updatedScoreList = JSON.stringify(scoreList);
+        localStorage.setItem("scoreList", updatedScoreList);
+        window.location.replace("highscores.html");
     })
 }
 
